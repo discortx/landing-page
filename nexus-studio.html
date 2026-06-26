@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="PixelForge is a web design studio from Lahore, Pakistan — crafting beautiful, high-performance websites for startups and businesses worldwide.">
+<meta property="og:title" content="PixelForge — Beautiful Websites. Real Results.">
+<meta property="og:description" content="We forge pixel-perfect, performance-optimized websites that turn visitors into loyal customers. Based in Lahore, working worldwide.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://pixelforge.com">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PixelForge — Beautiful Websites. Real Results.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%234f8ef7'/><rect x='7' y='7' width='8' height='8' rx='1.5' fill='white'/><rect x='17' y='7' width='8' height='8' rx='1.5' fill='rgba(255,255,255,0.45)'/><rect x='7' y='17' width='8' height='8' rx='1.5' fill='rgba(255,255,255,0.45)'/><rect x='17' y='17' width='8' height='8' rx='1.5' fill='white'/></svg>">
+<title>PixelForge — Beautiful Websites. Real Results.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ── TOKENS ─────────────────────────────── */
+:root{
+  --bg:       #0a0f1e;
+  --card:     #0d1528;
+  --elevated: #111d35;
+  --accent:   #4f8ef7;
+  --adim:     rgba(79,142,247,.12);
+  --aglow:    rgba(79,142,247,.26);
+  --text:     #eef2ff;
+  --muted:    #8892a4;
+  --border:   rgba(255,255,255,.07);
+  --bhover:   rgba(79,142,247,.35);
+  --r:        14px;
+  --pill:     9999px;
+}
+
+/* ── RESET ──────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.6;
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4,h5{font-family:'Syne','system-ui',sans-serif}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+button{cursor:pointer;font-family:inherit}
+
+/* ── ACCESSIBILITY — focus rings ─────────── */
+:focus-visible{
+  outline:2px solid var(--accent);
+  outline-offset:3px;
+  border-radius:4px;
+}
+.btn:focus-visible{ outline-offset:4px; }
+
+/* ── LAYOUT ─────────────────────────────── */
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+section{padding:96px 0}
+
+/* ── TYPE SCALE ─────────────────────────── */
+.eye{
+  font-size:11px;font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--accent);
+  display:block;margin-bottom:14px;
+}
+.d-xl{
+  font-size:clamp(34px,3.8vw,58px);font-weight:800;
+  line-height:1.08;letter-spacing:-1.5px;text-wrap:balance;
+}
+.d-lg{
+  font-size:clamp(26px,2.8vw,40px);font-weight:800;
+  line-height:1.12;letter-spacing:-1px;text-wrap:balance;
+}
+.lead{font-size:16px;color:var(--muted);line-height:1.72}
+
+/* ── BUTTONS ────────────────────────────── */
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:13px 26px;border-radius:var(--pill);
+  font-size:14px;font-weight:600;
+  border:1.5px solid transparent;
+  transition:background .2s,color .2s,box-shadow .2s,transform .2s,border-color .2s;
+}
+.btn .arr{transition:transform .2s}
+.btn:hover .arr{transform:translateX(3px)}
+.btn-p{background:var(--accent);color:#fff;border-color:var(--accent)}
+.btn-p:hover{background:#3a7ae8;border-color:#3a7ae8;box-shadow:0 8px 28px var(--aglow);transform:translateY(-1px)}
+.btn-g{background:transparent;color:var(--text);border-color:rgba(255,255,255,.2)}
+.btn-g:hover{border-color:rgba(255,255,255,.45);background:rgba(255,255,255,.04);transform:translateY(-1px)}
+.btn-w{background:#fff;color:#1a3fa8;border-color:#fff;font-weight:700}
+.btn-w:hover{background:rgba(255,255,255,.9);transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,0,0,.2)}
+.btn-sm{padding:9px 20px;font-size:13px}
+
+/* ── LOGO MARK (pixel-grid icon) ─────────── */
+.logo-icon{
+  display:inline-grid;grid-template-columns:1fr 1fr;
+  gap:2.5px;width:17px;height:17px;
+  margin-right:9px;flex-shrink:0;vertical-align:middle;
+}
+.logo-icon span{
+  display:block;width:100%;height:100%;
+  border-radius:1.5px;background:var(--accent);
+}
+.logo-icon span:nth-child(2),
+.logo-icon span:nth-child(3){opacity:.4}
+.logo .forge{color:var(--accent)}
+
+/* ── REVEAL ─────────────────────────────── */
+.rv{
+  opacity:0;transform:translateY(30px);
+  transition:opacity .65s cubic-bezier(.25,.46,.45,.94),
+             transform .65s cubic-bezier(.25,.46,.45,.94);
+}
+.rv.on{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.18s}
+.d3{transition-delay:.28s}.d4{transition-delay:.38s}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+
+/* ── NAVBAR ─────────────────────────────── */
+.nav{
+  position:fixed;inset:0 0 auto 0;z-index:900;
+  padding:22px 0;border-bottom:1px solid transparent;
+  transition:padding .3s,background .3s,backdrop-filter .3s,transform .35s,border-color .3s;
+}
+.nav.scrolled{
+  padding:14px 0;
+  background:rgba(10,15,30,.85);
+  backdrop-filter:blur(20px) saturate(160%);
+  -webkit-backdrop-filter:blur(20px) saturate(160%);
+  border-bottom-color:var(--border);
+}
+.nav.up{transform:translateY(-100%)}
+.nav-row{display:flex;align-items:center;justify-content:space-between;gap:32px}
+.logo{
+  font-family:'Syne',system-ui,sans-serif;font-size:20px;font-weight:800;
+  color:var(--text);letter-spacing:-.4px;flex-shrink:0;
+}
+.logo .dot{color:var(--accent)}
+.nav-links{display:flex;list-style:none;gap:34px}
+.nav-links a{font-size:14px;font-weight:500;color:var(--muted);transition:color .15s}
+.nav-links a:hover{color:var(--text)}
+.nav-act{display:flex;align-items:center;gap:16px;flex-shrink:0}
+.hbg{
+  display:none;flex-direction:column;gap:5.5px;
+  width:32px;height:32px;align-items:center;justify-content:center;
+  background:none;border:none;padding:0;
+}
+.hbg span{
+  display:block;width:22px;height:1.5px;
+  background:var(--text);border-radius:2px;
+  transition:transform .3s,opacity .3s;
+}
+.hbg.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hbg.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.hbg.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.drawer{
+  position:fixed;inset:0;background:var(--bg);z-index:850;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:36px;
+  opacity:0;pointer-events:none;transition:opacity .3s;
+}
+.drawer.open{opacity:1;pointer-events:all}
+.drawer a{
+  font-family:'Syne',system-ui,sans-serif;font-size:36px;font-weight:700;
+  color:var(--text);letter-spacing:-.5px;transition:color .2s;
+}
+.drawer a:hover{color:var(--accent)}
+
+/* ── HERO ────────────────────────────────── */
+.hero{
+  min-height:100svh;display:flex;align-items:center;
+  position:relative;overflow:hidden;padding-top:100px;padding-bottom:60px;
+}
+.orbs{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.orb{position:absolute;border-radius:50%;filter:blur(100px)}
+.orb-1{width:720px;height:720px;background:radial-gradient(circle,#4f8ef7 0%,#2455c8 55%,transparent 100%);top:-180px;right:-180px;opacity:.17;animation:od1 11s ease-in-out infinite}
+.orb-2{width:480px;height:480px;background:radial-gradient(circle,#7c4dff 0%,#4a2abb 55%,transparent 100%);bottom:-120px;left:-100px;opacity:.15;animation:od2 14s ease-in-out infinite}
+.orb-3{width:300px;height:300px;background:radial-gradient(circle,#00c6ff 0%,#0078d4 55%,transparent 100%);top:38%;left:46%;opacity:.09;animation:od3 9s ease-in-out infinite}
+@keyframes od1{0%,100%{transform:translate(0,0) scale(1)}40%{transform:translate(-45px,35px) scale(1.07)}70%{transform:translate(25px,-20px) scale(.94)}}
+@keyframes od2{0%,100%{transform:translate(0,0) scale(1)}35%{transform:translate(30px,-40px) scale(1.05)}65%{transform:translate(-20px,25px) scale(.96)}}
+@keyframes od3{0%,100%{transform:translate(0,0) scale(1);opacity:.09}50%{transform:translate(-28px,-18px) scale(1.14);opacity:.14}}
+@media(prefers-reduced-motion:reduce){.orb{animation:none!important}}
+.hero-inner{position:relative;z-index:1;max-width:740px}
+.badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--adim);border:1px solid rgba(79,142,247,.22);
+  border-radius:var(--pill);padding:5px 14px 5px 10px;
+  font-size:12px;font-weight:500;color:var(--accent);margin-bottom:32px;
+}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:var(--accent);animation:ping 2.4s ease infinite;flex-shrink:0}
+@keyframes ping{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.72)}}
+.hero h1{margin-bottom:26px}
+.hero h1 .ac{color:var(--accent)}
+.hero-sub{font-size:16px;color:var(--muted);line-height:1.68;max-width:500px;margin-bottom:44px}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:72px}
+.clients-wrap{display:flex;flex-direction:column;gap:14px}
+.clients-label{font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);opacity:.7}
+.logos{display:flex;gap:12px;flex-wrap:wrap}
+.logo-box{
+  height:42px;width:130px;border:1px solid var(--border);
+  border-radius:8px;background:rgba(255,255,255,.02);
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:700;letter-spacing:.02em;
+  color:rgba(255,255,255,.28);font-family:'Syne',sans-serif;
+  transition:border-color .2s,background .2s,color .2s;
+}
+.logo-box:hover{border-color:rgba(79,142,247,.28);background:var(--adim);color:rgba(255,255,255,.5)}
+
+/* ── SERVICES ───────────────────────────── */
+.services{background:rgba(255,255,255,.01);border-top:1px solid var(--border)}
+.sh{margin-bottom:56px}
+.sh .lead{max-width:500px;margin-top:14px}
+.svc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.svc-card{
+  background:var(--card);border:1px solid var(--border);
+  border-left:3px solid transparent;border-radius:var(--r);
+  padding:36px 30px;
+  transition:border-color .25s,transform .25s,box-shadow .25s;
+  position:relative;overflow:hidden;
+}
+.svc-card::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,var(--adim),transparent 60%);
+  opacity:0;transition:opacity .3s;pointer-events:none;
+}
+.svc-card:hover{
+  border-left-color:var(--accent);
+  border-top-color:var(--bhover);
+  border-right-color:var(--bhover);
+  border-bottom-color:var(--bhover);
+  transform:translateY(-5px);
+  box-shadow:0 16px 48px rgba(79,142,247,.08),0 4px 12px rgba(0,0,0,.3);
+}
+.svc-card:hover::after{opacity:1}
+.svc-icon{
+  width:50px;height:50px;border-radius:10px;
+  background:var(--adim);border:1px solid rgba(79,142,247,.18);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:22px;position:relative;z-index:1;
+}
+.svc-icon svg{width:22px;height:22px;stroke:var(--accent)}
+.svc-card h3{font-size:18px;font-weight:700;margin-bottom:10px;position:relative;z-index:1}
+.svc-card p{font-size:14px;color:var(--muted);line-height:1.65;position:relative;z-index:1}
+
+/* ── PORTFOLIO ──────────────────────────── */
+.port-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.pcard{
+  border-radius:var(--r);overflow:hidden;
+  border:1px solid var(--border);cursor:pointer;
+  transition:border-color .25s,box-shadow .25s;
+}
+.pcard:hover{border-color:var(--bhover);box-shadow:0 20px 60px rgba(0,0,0,.4)}
+.pthumb{height:260px;position:relative;overflow:hidden}
+.pcard:hover .browser-body-inner{transform:scale(1.03);transition:transform .45s cubic-bezier(.25,.46,.45,.94)}
+.poverlay{
+  position:absolute;inset:0;
+  background:rgba(8,12,26,.85);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;transition:opacity .28s;z-index:10;
+}
+.pcard:hover .poverlay{opacity:1}
+.view-lbl{
+  display:flex;align-items:center;gap:10px;
+  font-family:'Syne',system-ui,sans-serif;
+  font-size:16px;font-weight:700;letter-spacing:-.2px;
+}
+.view-lbl svg{width:18px;height:18px;transition:transform .2s}
+.pcard:hover .view-lbl svg{transform:translateX(4px)}
+.pmeta{padding:18px 22px;background:var(--card);border-top:1px solid var(--border)}
+.ptag{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:5px}
+.pmeta h3{font-size:17px;font-weight:700}
+
+/* ── BROWSER CHROME (shared) ─────────────── */
+.browser{width:100%;height:100%;display:flex;flex-direction:column;overflow:hidden}
+.b-chrome{
+  height:28px;flex-shrink:0;
+  display:flex;align-items:center;padding:0 10px;gap:6px;
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.b-dots{display:flex;gap:4px}
+.b-dot{width:7px;height:7px;border-radius:50%}
+.bd1{background:#ff5f56}.bd2{background:#ffbd2e}.bd3{background:#27c93f}
+.b-url{
+  flex:1;height:16px;background:rgba(255,255,255,.06);
+  border-radius:3px;margin:0 8px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:9px;color:rgba(255,255,255,.3);letter-spacing:.01em;
+}
+.browser-body-inner{width:100%;height:100%;transition:transform .45s cubic-bezier(.25,.46,.45,.94)}
+
+/* ── MOCK: Finance Dashboard ─────────────── */
+.mock-finance .b-chrome{background:#0b1220}
+.mock-finance .browser-body-inner{background:#0f1929;display:flex;height:232px}
+.mf-sidebar{
+  width:46px;flex-shrink:0;background:#080f1c;
+  border-right:1px solid rgba(255,255,255,.05);
+  padding:8px 0;display:flex;flex-direction:column;align-items:center;gap:6px;
+}
+.mf-logo-sq{width:22px;height:22px;background:#4f8ef7;border-radius:4px;margin-bottom:4px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:900;color:#fff;font-family:'Syne',sans-serif}
+.mf-side-item{width:24px;height:4px;border-radius:2px;background:rgba(255,255,255,.08)}
+.mf-side-item.a{background:rgba(79,142,247,.5);width:24px;height:4px}
+.mf-main{flex:1;padding:8px 10px 6px;overflow:hidden;display:flex;flex-direction:column;gap:6px}
+.mf-topbar{display:flex;justify-content:space-between;align-items:center}
+.mf-title{font-size:8px;font-weight:700;color:rgba(255,255,255,.7);font-family:'Syne',sans-serif}
+.mf-pill{font-size:7px;background:rgba(79,142,247,.15);color:#4f8ef7;border-radius:3px;padding:1px 5px;font-family:'Inter',sans-serif}
+.mf-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
+.mf-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:4px;padding:5px 6px}
+.mf-cv{font-size:9px;font-weight:700;color:#fff;font-family:'Syne',sans-serif;line-height:1}
+.mf-cl{font-size:6.5px;color:rgba(255,255,255,.35);margin-top:2px;font-family:'Inter',sans-serif}
+.mf-chart{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);border-radius:4px;padding:6px 6px 4px;flex:1}
+.mf-ct{font-size:6.5px;color:rgba(255,255,255,.35);margin-bottom:5px;font-family:'Inter',sans-serif}
+.mf-bars{display:flex;align-items:flex-end;gap:3px;height:60px}
+.mf-bar{flex:1;border-radius:2px 2px 0 0;background:rgba(79,142,247,.2)}
+.mf-bar.h{background:#4f8ef7}
+.mf-bar.m{background:rgba(79,142,247,.5)}
+
+/* ── MOCK: Restaurant ────────────────────── */
+.mock-restaurant .b-chrome{background:#1a0e06}
+.mock-restaurant .browser-body-inner{background:#1c0f07;display:flex;flex-direction:column;height:232px}
+.mr-nav{
+  height:28px;flex-shrink:0;
+  background:#150c04;border-bottom:1px solid rgba(255,255,255,.06);
+  display:flex;align-items:center;padding:0 12px;gap:16px;
+}
+.mr-brand{font-size:9px;font-weight:800;color:#f5c87a;letter-spacing:.1em;font-family:'Syne',sans-serif;flex:1}
+.mr-link{font-size:7.5px;color:rgba(255,255,255,.4);font-family:'Inter',sans-serif}
+.mr-btn{font-size:7px;background:#e8a030;color:#fff;border-radius:2px;padding:2px 6px;font-family:'Inter',sans-serif;font-weight:600}
+.mr-hero{
+  flex:1;
+  background:linear-gradient(160deg,#2a1200 0%,#3d1c00 40%,#1e0e00 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:10px;position:relative;overflow:hidden;
+}
+.mr-hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 60% 40%,rgba(232,160,48,.12) 0%,transparent 70%);
+}
+.mr-tag{font-size:7px;color:#e8a030;letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px;font-family:'Inter',sans-serif;position:relative;z-index:1}
+.mr-h{font-size:14px;font-weight:800;color:#fff;letter-spacing:-.3px;line-height:1.2;margin-bottom:8px;font-family:'Syne',sans-serif;position:relative;z-index:1}
+.mr-sub{font-size:8px;color:rgba(255,255,255,.45);margin-bottom:10px;font-family:'Inter',sans-serif;position:relative;z-index:1}
+.mr-cta{font-size:7.5px;background:#e8a030;color:#fff;border-radius:3px;padding:4px 12px;font-family:'Inter',sans-serif;font-weight:600;position:relative;z-index:1}
+.mr-deco-line{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:4px}
+.mr-deco-dot{width:4px;height:4px;border-radius:50%;background:rgba(232,160,48,.25)}
+.mr-deco-dot.a{background:rgba(232,160,48,.7)}
+
+/* ── MOCK: Ecommerce ─────────────────────── */
+.mock-ecom .b-chrome{background:#111823}
+.mock-ecom .browser-body-inner{background:#f0f2f5;display:flex;flex-direction:column;height:232px}
+.me-nav{
+  height:30px;flex-shrink:0;background:#fff;
+  border-bottom:1px solid rgba(0,0,0,.08);
+  display:flex;align-items:center;padding:0 10px;gap:8px;
+}
+.me-brand{font-size:10px;font-weight:800;color:#1a1a2e;font-family:'Syne',sans-serif;flex-shrink:0;letter-spacing:-.2px}
+.me-search{
+  flex:1;height:16px;background:#f3f4f6;border:1px solid #e5e7eb;
+  border-radius:3px;display:flex;align-items:center;padding:0 6px;
+  font-size:7.5px;color:#9ca3af;font-family:'Inter',sans-serif;gap:4px;
+}
+.me-search-ic{width:8px;height:8px;border:1px solid #9ca3af;border-radius:50%}
+.me-icons{display:flex;gap:6px;flex-shrink:0}
+.me-ic{width:16px;height:16px;background:#f3f4f6;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:8px;color:#6b7280}
+.me-cat{
+  height:20px;background:#fff;border-bottom:1px solid rgba(0,0,0,.06);
+  display:flex;align-items:center;padding:0 10px;gap:12px;
+}
+.me-cat-item{font-size:7px;color:#6b7280;font-family:'Inter',sans-serif}
+.me-cat-item.a{color:#6366f1;font-weight:600;border-bottom:1.5px solid #6366f1;padding-bottom:1px}
+.me-products{flex:1;display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:8px}
+.me-prod{background:#fff;border-radius:4px;overflow:hidden;display:flex;flex-direction:column}
+.me-prod-img{height:56px;display:flex;align-items:center;justify-content:center}
+.me-prod-info{padding:4px 5px}
+.me-prod-name{font-size:7px;font-weight:600;color:#1a1a2e;font-family:'Inter',sans-serif;line-height:1.2;margin-bottom:2px}
+.me-prod-price{font-size:8px;font-weight:700;color:#6366f1;font-family:'Syne',sans-serif}
+
+/* ── MOCK: SaaS ──────────────────────────── */
+.mock-saas .b-chrome{background:#0d1117}
+.mock-saas .browser-body-inner{background:#0d1117;display:flex;flex-direction:column;height:232px}
+.ms-nav{
+  height:30px;flex-shrink:0;background:#0d1117;
+  border-bottom:1px solid rgba(255,255,255,.06);
+  display:flex;align-items:center;padding:0 12px;gap:14px;
+}
+.ms-brand{font-size:10px;font-weight:800;color:#fff;font-family:'Syne',sans-serif;flex:1;letter-spacing:-.2px}
+.ms-brand span{color:#10b981}
+.ms-link{font-size:7.5px;color:rgba(255,255,255,.4);font-family:'Inter',sans-serif}
+.ms-btn{font-size:7px;background:#10b981;color:#fff;border-radius:3px;padding:2px 7px;font-family:'Inter',sans-serif;font-weight:600}
+.ms-hero{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px;text-align:center;position:relative;overflow:hidden}
+.ms-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 30%,rgba(16,185,129,.08) 0%,transparent 65%)}
+.ms-badge{font-size:7px;background:rgba(16,185,129,.12);color:#10b981;border:1px solid rgba(16,185,129,.2);border-radius:10px;padding:2px 8px;margin-bottom:7px;font-family:'Inter',sans-serif;position:relative;z-index:1}
+.ms-h{font-size:13px;font-weight:800;color:#fff;letter-spacing:-.3px;line-height:1.2;margin-bottom:5px;font-family:'Syne',sans-serif;position:relative;z-index:1}
+.ms-sub{font-size:7.5px;color:rgba(255,255,255,.4);margin-bottom:10px;font-family:'Inter',sans-serif;position:relative;z-index:1;max-width:160px}
+.ms-ctas{display:flex;gap:5px;margin-bottom:12px;position:relative;z-index:1}
+.ms-cta1{font-size:7px;background:#10b981;color:#fff;border-radius:3px;padding:3px 9px;font-family:'Inter',sans-serif;font-weight:600}
+.ms-cta2{font-size:7px;color:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.12);border-radius:3px;padding:3px 9px;font-family:'Inter',sans-serif}
+.ms-features{display:flex;gap:5px;position:relative;z-index:1}
+.ms-feat{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:4px;padding:5px 8px;text-align:center}
+.ms-feat-ic{font-size:10px;margin-bottom:2px}
+.ms-feat-t{font-size:6.5px;color:rgba(255,255,255,.5);font-family:'Inter',sans-serif;white-space:nowrap}
+
+/* ── FEATURES BAR (replaces stats) ──────── */
+.features{
+  background:var(--card);
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  padding:72px 0;
+}
+.feat-head{text-align:center;margin-bottom:52px}
+.feat-head .d-lg{margin-top:8px}
+.feat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.feat-item{
+  background:rgba(255,255,255,.02);
+  border:1px solid var(--border);border-radius:var(--r);
+  padding:28px 24px;text-align:center;
+  transition:border-color .25s,transform .25s,box-shadow .25s;
+}
+.feat-item:hover{
+  border-color:var(--bhover);transform:translateY(-4px);
+  box-shadow:0 12px 40px rgba(79,142,247,.08);
+}
+.feat-icon{
+  width:52px;height:52px;border-radius:50%;
+  background:var(--adim);border:1px solid rgba(79,142,247,.18);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 18px;
+}
+.feat-icon svg{width:22px;height:22px;stroke:var(--accent)}
+.feat-item h3{font-size:15px;font-weight:700;margin-bottom:8px}
+.feat-item p{font-size:13px;color:var(--muted);line-height:1.6}
+
+/* ── TESTIMONIALS ───────────────────────── */
+.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.tc{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--r);padding:30px 28px;
+  display:flex;flex-direction:column;
+  transition:border-color .25s,transform .25s;
+}
+.tc:hover{border-color:rgba(79,142,247,.22);transform:translateY(-3px)}
+.qg{font-family:'Syne',Georgia,serif;font-size:72px;line-height:.55;color:var(--accent);opacity:.5;margin-bottom:22px;display:block;user-select:none}
+.ttext{font-size:14px;color:#b0bac8;line-height:1.75;flex:1;margin-bottom:28px}
+.tauthor{display:flex;align-items:center;gap:12px}
+.chip{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Syne',system-ui,sans-serif;font-size:14px;font-weight:700;flex-shrink:0}
+.cb{background:linear-gradient(135deg,#4f8ef7,#2455c8)}
+.cv{background:linear-gradient(135deg,#7c4dff,#4a2abb)}
+.ca{background:linear-gradient(135deg,#f97316,#fbbf24);color:#1a0a00}
+.aname{font-size:14px;font-weight:600;line-height:1.3}
+.aco{font-size:12px;color:var(--muted)}
+
+/* ── CONTACT SECTION ─────────────────────── */
+.contact-section{
+  background:linear-gradient(130deg,#1041c8 0%,#4f8ef7 55%,#00c6ff 100%);
+  position:relative;overflow:hidden;
+}
+.contact-section::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 100% at 50% 0%,rgba(255,255,255,.1) 0%,transparent 70%);
+  pointer-events:none;
+}
+.cring{position:absolute;border-radius:50%;border:1px solid rgba(255,255,255,.1);pointer-events:none}
+.cr1{width:500px;height:500px;top:-220px;left:-120px}
+.cr2{width:360px;height:360px;bottom:-160px;right:-80px}
+.contact-inner{
+  position:relative;z-index:1;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:60px;align-items:start;
+}
+.contact-left h2{font-size:clamp(28px,3.2vw,44px);font-weight:800;letter-spacing:-1.2px;margin-bottom:14px;line-height:1.1}
+.contact-left p{font-size:16px;opacity:.85;line-height:1.68;margin-bottom:32px}
+.contact-details{display:flex;flex-direction:column;gap:14px}
+.contact-detail{display:flex;align-items:center;gap:12px;font-size:14px;opacity:.85}
+.contact-detail svg{width:18px;height:18px;flex-shrink:0;opacity:.7}
+/* Form */
+.cform{
+  background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.18);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-radius:20px;padding:36px 32px;
+}
+.cform-group{margin-bottom:18px}
+.cform-group label{
+  display:block;font-size:12px;font-weight:600;
+  letter-spacing:.06em;text-transform:uppercase;
+  margin-bottom:8px;opacity:.85;
+}
+.cform-group input,
+.cform-group select,
+.cform-group textarea{
+  width:100%;background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.2);border-radius:10px;
+  color:#fff;font-family:'Inter',sans-serif;font-size:14px;
+  padding:12px 16px;transition:border-color .2s,background .2s;
+  outline:none;
+}
+.cform-group input::placeholder,
+.cform-group textarea::placeholder{color:rgba(255,255,255,.4)}
+.cform-group input:focus,
+.cform-group select:focus,
+.cform-group textarea:focus{
+  border-color:rgba(255,255,255,.6);
+  background:rgba(255,255,255,.15);
+}
+.cform-group textarea{height:110px;resize:vertical}
+.cform-group select{cursor:pointer}
+.cform-group select option{background:#1a3fa8;color:#fff}
+.cform-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.cform-error{font-size:11px;color:#fca5a5;margin-top:5px;display:none}
+.cform-error.show{display:block}
+.cform-submit{
+  width:100%;padding:14px;background:#fff;color:#1a3fa8;
+  border:none;border-radius:10px;font-size:15px;font-weight:700;
+  font-family:'Syne',sans-serif;letter-spacing:-.2px;
+  transition:background .2s,transform .2s,box-shadow .2s;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  margin-top:4px;
+}
+.cform-submit:hover{background:rgba(255,255,255,.92);transform:translateY(-1px);box-shadow:0 8px 30px rgba(0,0,0,.15)}
+.cform-submit:disabled{opacity:.6;cursor:not-allowed;transform:none}
+.cform-success{
+  display:none;text-align:center;padding:40px 20px;
+}
+.cform-success.show{display:flex;flex-direction:column;align-items:center;gap:16px}
+.success-icon{
+  width:56px;height:56px;background:rgba(255,255,255,.15);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+}
+.success-icon svg{width:28px;height:28px;stroke:#fff}
+.cform-success h3{font-size:22px;font-weight:700}
+.cform-success p{font-size:14px;opacity:.8;line-height:1.6}
+
+/* ── FOOTER ─────────────────────────────── */
+footer{background:#060a16;border-top:1px solid var(--border);padding:72px 0 36px}
+.ftop{
+  display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;
+  gap:48px;padding-bottom:56px;
+  border-bottom:1px solid var(--border);margin-bottom:28px;
+}
+.fbrand .logo{display:block;margin-bottom:14px}
+.ftag{font-size:13px;color:var(--muted);line-height:1.65;max-width:210px}
+.fcol h5{font-family:'Inter',sans-serif;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text);margin-bottom:18px}
+.flinks{list-style:none;display:flex;flex-direction:column;gap:10px}
+.flinks a{font-size:13px;color:var(--muted);transition:color .15s}
+.flinks a:hover{color:var(--text)}
+.fbot{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.fcopy,.fmade{font-size:12px;color:rgba(136,146,164,.6)}
+
+/* ── RESPONSIVE ─────────────────────────── */
+@media(max-width:1024px){
+  .svc-grid{grid-template-columns:repeat(2,1fr)}
+  .tgrid{grid-template-columns:repeat(2,1fr)}
+  .ftop{grid-template-columns:1fr 1fr}
+  .feat-grid{grid-template-columns:repeat(2,1fr)}
+  .contact-inner{grid-template-columns:1fr;gap:40px}
+}
+@media(max-width:768px){
+  section{padding:72px 0}
+  .nav-links,.nav-act{display:none}
+  .hbg{display:flex}
+  .hero-ctas{flex-direction:column;align-items:flex-start}
+  .svc-grid{grid-template-columns:1fr}
+  .port-grid{grid-template-columns:1fr}
+  .tgrid{grid-template-columns:1fr}
+  .feat-grid{grid-template-columns:repeat(2,1fr)}
+  .ftop{grid-template-columns:1fr;gap:32px}
+  .fbot{flex-direction:column;text-align:center;gap:8px}
+  .cform-row{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+  .feat-grid{grid-template-columns:1fr}
+  .logo-box{width:110px;height:38px;font-size:10px}
+  .logos{gap:8px}
+  .cform{padding:28px 22px}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ NAVBAR ═══ -->
+<header role="banner">
+<nav class="nav" id="nav" aria-label="Main navigation">
+  <div class="wrap">
+    <div class="nav-row">
+      <a href="#home" class="logo" aria-label="PixelForge — home"><span class="logo-icon" aria-hidden="true"><span></span><span></span><span></span><span></span></span>Pixel<span class="forge">Forge</span></a>
+      <ul class="nav-links" role="list">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="nav-act">
+        <a href="#contact" class="btn btn-p btn-sm">Get a Quote</a>
+      </div>
+      <button class="hbg" id="hbg" aria-label="Open navigation menu" aria-expanded="false" aria-controls="drawer">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<!-- MOBILE DRAWER -->
+<div class="drawer" id="drawer" role="dialog" aria-label="Navigation menu" aria-modal="true">
+  <a href="#services" class="dl">Services</a>
+  <a href="#work"     class="dl">Work</a>
+  <a href="#about"    class="dl">About</a>
+  <a href="#contact"  class="dl">Contact</a>
+  <a href="#contact" class="btn btn-p" style="margin-top:8px">Get a Quote</a>
+</div>
+
+<!-- ═══ HERO ═══ -->
+<main>
+<section class="hero" id="home" aria-labelledby="hero-heading">
+  <div class="orbs" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+  <div class="wrap">
+    <div class="hero-inner">
+      <div class="badge rv" aria-label="Status: Available for new projects">
+        <span class="badge-dot" aria-hidden="true"></span>
+        Now accepting new projects
+      </div>
+      <h1 class="d-xl rv d1" id="hero-heading">
+        Beautiful Websites.<br>
+        <span class="ac">Real Results.</span>
+      </h1>
+      <p class="hero-sub rv d2">
+        A web design studio from Lahore, Pakistan — crafting high-performance, conversion-focused websites for startups and ambitious brands worldwide.
+      </p>
+      <div class="hero-ctas rv d3">
+        <a href="#work" class="btn btn-p">
+          See Our Work
+          <svg class="arr" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#services" class="btn btn-g">Explore Services</a>
+      </div>
+      <div class="clients-wrap rv d4">
+        <span class="clients-label">Trusted by teams at</span>
+        <div class="logos" role="list" aria-label="Companies we've worked with">
+          <div class="logo-box" role="listitem">Stripe</div>
+          <div class="logo-box" role="listitem">Linear</div>
+          <div class="logo-box" role="listitem">Notion</div>
+          <div class="logo-box" role="listitem">Figma</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SERVICES ═══ -->
+<section class="services" id="services" aria-labelledby="services-heading">
+  <div class="wrap">
+    <div class="sh rv">
+      <span class="eye">What We Do</span>
+      <h2 class="d-lg" id="services-heading">Precision Craft,<br>Built to Perform</h2>
+      <p class="lead">We combine sharp design instincts with engineering precision — clean code, smart interactions, and interfaces that feel effortless from the very first click.</p>
+    </div>
+    <div class="svc-grid">
+
+      <div class="svc-card rv d1">
+        <div class="svc-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+          </svg>
+        </div>
+        <h3>Frontend Development</h3>
+        <p>Semantic, maintainable HTML, CSS, and JavaScript — written by hand, not generated by templates. Fast to load, easy to extend.</p>
+      </div>
+
+      <div class="svc-card rv d2">
+        <div class="svc-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="5" y="2" width="14" height="20" rx="2"/><rect x="2" y="7" width="20" height="10" rx="2"/>
+          </svg>
+        </div>
+        <h3>Responsive Websites</h3>
+        <p>Mobile-first layouts that look sharp on every screen size — from a 320px phone to a 4K monitor — with no janky breakpoints.</p>
+      </div>
+
+      <div class="svc-card rv d3">
+        <div class="svc-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+          </svg>
+        </div>
+        <h3>UI/UX Implementation</h3>
+        <p>We take Figma designs and bring them to life with precision — pixel-perfect spacing, correct typefaces, and polished micro-interactions.</p>
+      </div>
+
+      <div class="svc-card rv d4">
+        <div class="svc-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+        </div>
+        <h3>Performance Optimization</h3>
+        <p>Core Web Vitals audits, image optimization, lazy loading, and render-blocking fixes that move your site from slow to sub-second.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PORTFOLIO ═══ -->
+<section id="work" aria-labelledby="work-heading">
+  <div class="wrap">
+    <div class="sh rv">
+      <span class="eye">Selected Work</span>
+      <h2 class="d-lg" id="work-heading">Recent Projects</h2>
+    </div>
+    <div class="port-grid">
+
+      <!-- Finance Dashboard -->
+      <article class="pcard rv d1" tabindex="0" aria-label="Finvault — Finance Dashboard project">
+        <div class="pthumb">
+          <div class="browser mock-finance">
+            <div class="b-chrome">
+              <div class="b-dots" aria-hidden="true"><span class="b-dot bd1"></span><span class="b-dot bd2"></span><span class="b-dot bd3"></span></div>
+              <div class="b-url">finvault.app/dashboard</div>
+            </div>
+            <div class="browser-body-inner">
+              <div class="mf-sidebar" aria-hidden="true">
+                <div class="mf-logo-sq">F</div>
+                <div class="mf-side-item a"></div>
+                <div class="mf-side-item"></div>
+                <div class="mf-side-item"></div>
+                <div class="mf-side-item"></div>
+              </div>
+              <div class="mf-main" aria-hidden="true">
+                <div class="mf-topbar">
+                  <div class="mf-title">Overview</div>
+                  <div class="mf-pill">This month ▾</div>
+                </div>
+                <div class="mf-cards">
+                  <div class="mf-card"><div class="mf-cv">$84.2k</div><div class="mf-cl">Revenue</div></div>
+                  <div class="mf-card"><div class="mf-cv">1,204</div><div class="mf-cl">Orders</div></div>
+                  <div class="mf-card"><div class="mf-cv">8,920</div><div class="mf-cl">Users</div></div>
+                  <div class="mf-card"><div class="mf-cv">3.4%</div><div class="mf-cl">Conv.</div></div>
+                </div>
+                <div class="mf-chart">
+                  <div class="mf-ct">Monthly Revenue</div>
+                  <div class="mf-bars">
+                    <div class="mf-bar" style="height:42%"></div>
+                    <div class="mf-bar m" style="height:58%"></div>
+                    <div class="mf-bar" style="height:35%"></div>
+                    <div class="mf-bar m" style="height:70%"></div>
+                    <div class="mf-bar" style="height:52%"></div>
+                    <div class="mf-bar h" style="height:88%"></div>
+                    <div class="mf-bar m" style="height:64%"></div>
+                    <div class="mf-bar" style="height:47%"></div>
+                    <div class="mf-bar m" style="height:72%"></div>
+                    <div class="mf-bar h" style="height:95%"></div>
+                    <div class="mf-bar" style="height:60%"></div>
+                    <div class="mf-bar m" style="height:78%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="poverlay" aria-hidden="true">
+            <span class="view-lbl">View Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+          </div>
+        </div>
+        <div class="pmeta">
+          <span class="ptag">Fintech · Dashboard</span>
+          <h3>Finvault Analytics</h3>
+        </div>
+      </article>
+
+      <!-- Restaurant -->
+      <article class="pcard rv d2" tabindex="0" aria-label="Rosso Dining — Restaurant website project">
+        <div class="pthumb">
+          <div class="browser mock-restaurant">
+            <div class="b-chrome">
+              <div class="b-dots" aria-hidden="true"><span class="b-dot bd1"></span><span class="b-dot bd2"></span><span class="b-dot bd3"></span></div>
+              <div class="b-url">rosso-dining.com</div>
+            </div>
+            <div class="browser-body-inner">
+              <div class="mr-nav" aria-hidden="true">
+                <div class="mr-brand">ROSSO</div>
+                <div class="mr-link">Menu</div>
+                <div class="mr-link">Events</div>
+                <div class="mr-link">About</div>
+                <div class="mr-btn">Reserve</div>
+              </div>
+              <div class="mr-hero" aria-hidden="true">
+                <div class="mr-tag">Fine Dining · Est. 2019</div>
+                <div class="mr-h">Dining Worth<br>Remembering</div>
+                <div class="mr-sub">Seasonal Italian cuisine in the heart of the city</div>
+                <div class="mr-cta">Reserve a Table</div>
+                <div class="mr-deco-line">
+                  <div class="mr-deco-dot"></div>
+                  <div class="mr-deco-dot a"></div>
+                  <div class="mr-deco-dot"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="poverlay" aria-hidden="true">
+            <span class="view-lbl">View Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+          </div>
+        </div>
+        <div class="pmeta">
+          <span class="ptag">Restaurant · Web Design</span>
+          <h3>Rosso Dining</h3>
+        </div>
+      </article>
+
+      <!-- Ecommerce -->
+      <article class="pcard rv d3" tabindex="0" aria-label="Vera — Ecommerce store project">
+        <div class="pthumb">
+          <div class="browser mock-ecom">
+            <div class="b-chrome">
+              <div class="b-dots" aria-hidden="true"><span class="b-dot bd1"></span><span class="b-dot bd2"></span><span class="b-dot bd3"></span></div>
+              <div class="b-url" style="color:rgba(0,0,0,.3);background:rgba(0,0,0,.06)">shopvera.co</div>
+            </div>
+            <div class="browser-body-inner">
+              <div class="me-nav" aria-hidden="true">
+                <div class="me-brand">VERA</div>
+                <div class="me-search"><div class="me-search-ic"></div>Search products…</div>
+                <div class="me-icons">
+                  <div class="me-ic">♡</div>
+                  <div class="me-ic">⊞</div>
+                </div>
+              </div>
+              <div class="me-cat" aria-hidden="true">
+                <div class="me-cat-item a">All</div>
+                <div class="me-cat-item">Women</div>
+                <div class="me-cat-item">Men</div>
+                <div class="me-cat-item">Accessories</div>
+              </div>
+              <div class="me-products" aria-hidden="true">
+                <div class="me-prod">
+                  <div class="me-prod-img" style="background:linear-gradient(135deg,#e0d7f0,#c9b8e8)"></div>
+                  <div class="me-prod-info"><div class="me-prod-name">Linen Blazer</div><div class="me-prod-price">$189</div></div>
+                </div>
+                <div class="me-prod">
+                  <div class="me-prod-img" style="background:linear-gradient(135deg,#fde8d0,#f8c99a)"></div>
+                  <div class="me-prod-info"><div class="me-prod-name">Silk Blouse</div><div class="me-prod-price">$124</div></div>
+                </div>
+                <div class="me-prod">
+                  <div class="me-prod-img" style="background:linear-gradient(135deg,#d0e8f0,#9ac9e8)"></div>
+                  <div class="me-prod-info"><div class="me-prod-name">Wool Coat</div><div class="me-prod-price">$340</div></div>
+                </div>
+                <div class="me-prod">
+                  <div class="me-prod-img" style="background:linear-gradient(135deg,#d0f0e0,#9ae8bc)"></div>
+                  <div class="me-prod-info"><div class="me-prod-name">Midi Skirt</div><div class="me-prod-price">$98</div></div>
+                </div>
+                <div class="me-prod">
+                  <div class="me-prod-img" style="background:linear-gradient(135deg,#f0d0e0,#e89ab8)"></div>
+                  <div class="me-prod-info"><div class="me-prod-name">Knit Top</div><div class="me-prod-price">$76</div></div>
+                </div>
+                <div class="me-prod">
+                  <div class="me-prod-img" style="background:linear-gradient(135deg,#f0eed0,#e8e29a)"></div>
+                  <div class="me-prod-info"><div class="me-prod-name">Wide Pants</div><div class="me-prod-price">$145</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="poverlay" aria-hidden="true">
+            <span class="view-lbl">View Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+          </div>
+        </div>
+        <div class="pmeta">
+          <span class="ptag">E-commerce · Fashion</span>
+          <h3>Vera Fashion Store</h3>
+        </div>
+      </article>
+
+      <!-- SaaS -->
+      <article class="pcard rv d4" tabindex="0" aria-label="Flowly — SaaS landing page project">
+        <div class="pthumb">
+          <div class="browser mock-saas">
+            <div class="b-chrome">
+              <div class="b-dots" aria-hidden="true"><span class="b-dot bd1"></span><span class="b-dot bd2"></span><span class="b-dot bd3"></span></div>
+              <div class="b-url">getflowly.io</div>
+            </div>
+            <div class="browser-body-inner">
+              <div class="ms-nav" aria-hidden="true">
+                <div class="ms-brand">Flow<span>ly</span></div>
+                <div class="ms-link">Features</div>
+                <div class="ms-link">Pricing</div>
+                <div class="ms-link">Docs</div>
+                <div class="ms-btn">Get Started</div>
+              </div>
+              <div class="ms-hero" aria-hidden="true">
+                <div class="ms-badge">✦ Now in public beta</div>
+                <div class="ms-h">Automate Your<br>Workflow in Minutes</div>
+                <div class="ms-sub">Connect your tools, build automations, ship faster.</div>
+                <div class="ms-ctas">
+                  <div class="ms-cta1">Try for Free</div>
+                  <div class="ms-cta2">See how it works →</div>
+                </div>
+                <div class="ms-features">
+                  <div class="ms-feat"><div class="ms-feat-ic">⚡</div><div class="ms-feat-t">No-code</div></div>
+                  <div class="ms-feat"><div class="ms-feat-ic">🔗</div><div class="ms-feat-t">100+ integrations</div></div>
+                  <div class="ms-feat"><div class="ms-feat-ic">📊</div><div class="ms-feat-t">Analytics</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="poverlay" aria-hidden="true">
+            <span class="view-lbl">View Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+          </div>
+        </div>
+        <div class="pmeta">
+          <span class="ptag">SaaS · Landing Page</span>
+          <h3>Flowly — Workflow Automation</h3>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FEATURES (replaces fake stats) ═══ -->
+<section class="features" id="about" aria-labelledby="features-heading">
+  <div class="wrap">
+    <div class="feat-head rv">
+      <span class="eye">Why PixelForge</span>
+      <h2 class="d-lg" id="features-heading">Every Project Shipped<br>with These Standards</h2>
+    </div>
+    <div class="feat-grid">
+      <div class="feat-item rv d1">
+        <div class="feat-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="5" y="2" width="14" height="20" rx="2"/><rect x="2" y="7" width="20" height="10" rx="2"/>
+          </svg>
+        </div>
+        <h3>Responsive Design</h3>
+        <p>Tested on real devices. Every layout adapts cleanly from mobile to widescreen without hacks.</p>
+      </div>
+      <div class="feat-item rv d2">
+        <div class="feat-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+        </div>
+        <h3>Fast Performance</h3>
+        <p>Optimized for Core Web Vitals from day one. Lean code, compressed assets, no bloat.</p>
+      </div>
+      <div class="feat-item rv d3">
+        <div class="feat-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+        </div>
+        <h3>SEO-Ready Structure</h3>
+        <p>Semantic HTML, proper heading hierarchy, meta tags, and structured data baked in from the start.</p>
+      </div>
+      <div class="feat-item rv d4">
+        <div class="feat-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+          </svg>
+        </div>
+        <h3>Clean, Scalable Code</h3>
+        <p>Commented, logically structured, and easy to hand off — whether to a dev team or future you.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TESTIMONIALS ═══ -->
+<section id="testimonials" aria-labelledby="testi-heading">
+  <div class="wrap">
+    <div class="sh rv">
+      <span class="eye">Client Feedback</span>
+      <h2 class="d-lg" id="testi-heading">Straight from<br>the People We Worked With</h2>
+    </div>
+    <div class="tgrid">
+      <div class="tc rv d1">
+        <span class="qg" aria-hidden="true">"</span>
+        <p class="ttext">We needed a landing page that actually converted visitors. PixelForge delivered beyond what we expected — clean design, fast load times, and it works perfectly on every device.</p>
+        <div class="tauthor">
+          <div class="chip cb" aria-hidden="true">MT</div>
+          <div>
+            <div class="aname">Marcus T.</div>
+            <div class="aco">Founder, Taskflow</div>
+          </div>
+        </div>
+      </div>
+      <div class="tc rv d2">
+        <span class="qg" aria-hidden="true">"</span>
+        <p class="ttext">I hired PixelForge to rebuild our agency site from scratch. The process was smooth, communication was excellent, and the end result genuinely looks like a professional product.</p>
+        <div class="tauthor">
+          <div class="chip cv" aria-hidden="true">LN</div>
+          <div>
+            <div class="aname">Leila N.</div>
+            <div class="aco">Creative Director, Byform</div>
+          </div>
+        </div>
+      </div>
+      <div class="tc rv d3">
+        <span class="qg" aria-hidden="true">"</span>
+        <p class="ttext">Our bounce rate dropped significantly after the redesign. More importantly, the site finally feels like it reflects the quality of our product. Really happy with the result.</p>
+        <div class="tauthor">
+          <div class="chip ca" aria-hidden="true">RO</div>
+          <div>
+            <div class="aname">Ryan O.</div>
+            <div class="aco">CEO, Crest Analytics</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONTACT ═══ -->
+<section class="contact-section" id="contact" aria-labelledby="contact-heading">
+  <div class="cring cr1" aria-hidden="true"></div>
+  <div class="cring cr2" aria-hidden="true"></div>
+  <div class="wrap" style="padding-top:96px;padding-bottom:96px">
+    <div class="contact-inner">
+
+      <div class="contact-left rv">
+        <span class="eye" style="color:rgba(255,255,255,.7)">Get in Touch</span>
+        <h2 id="contact-heading">Let's Build Something<br>Remarkable Together.</h2>
+        <p>Share your vision and our Lahore-based team will get back to you within one business day — no fluff, no sales pitch.</p>
+        <div class="contact-details">
+          <div class="contact-detail">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            hello@pixelforge.com
+          </div>
+          <div class="contact-detail">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.5 16.18z"/></svg>
+            +92 (555) 248-9316
+          </div>
+          <div class="contact-detail">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Lahore, Pakistan
+          </div>
+        </div>
+      </div>
+
+      <div class="rv d2">
+        <form class="cform" id="contactForm" novalidate aria-label="Project enquiry form">
+          <div id="formFields">
+            <div class="cform-row">
+              <div class="cform-group">
+                <label for="fname">First Name</label>
+                <input type="text" id="fname" name="fname" placeholder="Alex" autocomplete="given-name" required aria-required="true">
+                <span class="cform-error" id="fname-err" role="alert">Please enter your first name.</span>
+              </div>
+              <div class="cform-group">
+                <label for="lname">Last Name</label>
+                <input type="text" id="lname" name="lname" placeholder="Johnson" autocomplete="family-name" required aria-required="true">
+                <span class="cform-error" id="lname-err" role="alert">Please enter your last name.</span>
+              </div>
+            </div>
+            <div class="cform-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" placeholder="alex@company.com" autocomplete="email" required aria-required="true">
+              <span class="cform-error" id="email-err" role="alert">Please enter a valid email address.</span>
+            </div>
+            <div class="cform-group">
+              <label for="ptype">Project Type</label>
+              <select id="ptype" name="ptype" required aria-required="true">
+                <option value="" disabled selected>Select a service…</option>
+                <option value="frontend">Frontend Development</option>
+                <option value="responsive">Responsive Website</option>
+                <option value="uiux">UI/UX Implementation</option>
+                <option value="performance">Performance Optimization</option>
+                <option value="other">Other / Not sure yet</option>
+              </select>
+              <span class="cform-error" id="ptype-err" role="alert">Please select a project type.</span>
+            </div>
+            <div class="cform-group">
+              <label for="details">Project Details</label>
+              <textarea id="details" name="details" placeholder="Tell us about your project — what you're building, your timeline, and any specific goals…" required aria-required="true"></textarea>
+              <span class="cform-error" id="details-err" role="alert">Please describe your project (at least 20 characters).</span>
+            </div>
+            <button type="submit" class="cform-submit" id="submitBtn">
+              Send Message
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+
+          <div class="cform-success" id="formSuccess" aria-live="polite">
+            <div class="success-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <h3>Message Sent!</h3>
+            <p>Thanks for reaching out. We'll review your project details and get back to you within one business day.</p>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ═══ FOOTER ═══ -->
+<footer role="contentinfo">
+  <div class="wrap">
+    <div class="ftop">
+      <div class="fbrand">
+        <a href="#home" class="logo" aria-label="PixelForge — back to top"><span class="logo-icon" aria-hidden="true"><span></span><span></span><span></span><span></span></span>Pixel<span class="forge">Forge</span></a>
+        <p class="ftag">Beautiful websites. Real results. — A web design studio forging high-performance digital products from Lahore, Pakistan.</p>
+      </div>
+      <div class="fcol">
+        <h5>Services</h5>
+        <ul class="flinks">
+          <li><a href="#services">Frontend Development</a></li>
+          <li><a href="#services">Responsive Websites</a></li>
+          <li><a href="#services">UI/UX Implementation</a></li>
+          <li><a href="#services">Performance Optimization</a></li>
+        </ul>
+      </div>
+      <div class="fcol">
+        <h5>Company</h5>
+        <ul class="flinks">
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#work">Our Work</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="#contact">Careers</a></li>
+        </ul>
+      </div>
+      <div class="fcol">
+        <h5>Connect</h5>
+        <ul class="flinks">
+          <li><a href="mailto:hello@pixelforge.com">hello@pixelforge.com</a></li>
+          <li><a href="#" rel="noopener">Twitter / X</a></li>
+          <li><a href="#" rel="noopener">LinkedIn</a></li>
+          <li><a href="#" rel="noopener">Dribbble</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="fbot">
+      <p class="fcopy">&copy; 2025 PixelForge. All rights reserved.</p>
+      <p class="fmade">Forged with ♥ in Lahore, Pakistan</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+'use strict';
+
+/* ── Navbar: hide/show on scroll ── */
+var nav=document.getElementById('nav'),lastY=0,tick=false;
+function onScroll(){
+  var y=window.scrollY;
+  nav.classList.toggle('scrolled',y>60);
+  nav.classList.toggle('up',y>lastY&&y>200);
+  lastY=y;tick=false;
+}
+window.addEventListener('scroll',function(){if(!tick){requestAnimationFrame(onScroll);tick=true;}},{passive:true});
+
+/* ── Mobile drawer ── */
+var hbg=document.getElementById('hbg'),drawer=document.getElementById('drawer');
+function openD(){hbg.classList.add('open');hbg.setAttribute('aria-expanded','true');drawer.classList.add('open');document.body.style.overflow='hidden';}
+function closeD(){hbg.classList.remove('open');hbg.setAttribute('aria-expanded','false');drawer.classList.remove('open');document.body.style.overflow='';}
+hbg.addEventListener('click',function(){drawer.classList.contains('open')?closeD():openD();});
+drawer.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeD);});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeD();});
+
+/* ── Scroll reveal ── */
+var ro=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');ro.unobserve(e.target);}});
+},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.hero .rv').forEach(function(el){el.classList.add('on');});
+document.querySelectorAll('.rv').forEach(function(el){if(!el.closest('.hero'))ro.observe(el);});
+
+/* ── Smooth scroll ── */
+document.querySelectorAll('a[href^="#"]').forEach(function(a){
+  a.addEventListener('click',function(e){
+    var t=document.querySelector(this.getAttribute('href'));
+    if(!t)return;e.preventDefault();
+    window.scrollTo({top:t.getBoundingClientRect().top+window.scrollY-80,behavior:'smooth'});
+  });
+});
+
+/* ── Keyboard: portfolio cards ── */
+document.querySelectorAll('.pcard').forEach(function(card){
+  card.addEventListener('keydown',function(e){
+    if(e.key==='Enter'||e.key===' '){e.preventDefault();card.querySelector('.poverlay').style.opacity='1';}
+  });
+  card.addEventListener('keyup',function(e){
+    if(e.key==='Enter'||e.key===' '){card.querySelector('.poverlay').style.opacity='';}
+  });
+});
+
+/* ── Contact form validation ── */
+var form=document.getElementById('contactForm');
+var submitBtn=document.getElementById('submitBtn');
+var formSuccess=document.getElementById('formSuccess');
+var formFields=document.getElementById('formFields');
+
+function showErr(id,show){
+  var el=document.getElementById(id);
+  if(el){el.classList.toggle('show',show);}
+}
+function setInvalid(input,invalid){
+  input.style.borderColor=invalid?'rgba(252,165,165,.7)':'';
+  input.setAttribute('aria-invalid',invalid?'true':'false');
+}
+
+function validate(){
+  var ok=true;
+  var fname=document.getElementById('fname');
+  var lname=document.getElementById('lname');
+  var email=document.getElementById('email');
+  var ptype=document.getElementById('ptype');
+  var details=document.getElementById('details');
+
+  var fv=fname.value.trim().length>0;
+  setInvalid(fname,!fv);showErr('fname-err',!fv);if(!fv)ok=false;
+
+  var lv=lname.value.trim().length>0;
+  setInvalid(lname,!lv);showErr('lname-err',!lv);if(!lv)ok=false;
+
+  var ev=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim());
+  setInvalid(email,!ev);showErr('email-err',!ev);if(!ev)ok=false;
+
+  var pv=ptype.value!=='';
+  setInvalid(ptype,!pv);showErr('ptype-err',!pv);if(!pv)ok=false;
+
+  var dv=details.value.trim().length>=20;
+  setInvalid(details,!dv);showErr('details-err',!dv);if(!dv)ok=false;
+
+  return ok;
+}
+
+/* Clear error on input */
+['fname','lname','email','ptype','details'].forEach(function(id){
+  var el=document.getElementById(id);
+  if(el){
+    el.addEventListener('input',function(){
+      showErr(id+'-err',false);
+      setInvalid(el,false);
+    });
+  }
+});
+
+form.addEventListener('submit',function(e){
+  e.preventDefault();
+  if(!validate())return;
+  submitBtn.disabled=true;
+  submitBtn.textContent='Sending…';
+  /* Simulate async submission (replace with real endpoint) */
+  setTimeout(function(){
+    formFields.style.display='none';
+    formSuccess.classList.add('show');
+    formSuccess.focus();
+  },900);
+});
+
+})();
+</script>
+</body>
+</html>
